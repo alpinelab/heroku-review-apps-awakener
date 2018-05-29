@@ -20,5 +20,5 @@ heroku_withAPIkey = PlatformAPI.connect(ENV['HEROKU_API_KEY'])
 review_apps = heroku_withAPIkey.app.list.select{ |app| app["name"].include?("sirac-staging-pr-") }.map{ |app| app["name"] }
 puts "#{review_apps.count} review apps detected"
 
-review_apps.each { |app_name| restore_db(app_name) }
+review_apps.each { |app_name| puts "#{app_name} has to be restored" }
 puts "the end"
