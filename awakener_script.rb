@@ -1,5 +1,3 @@
-require 'platform-api'
-
 system("curl -s https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli-linux-x64.tar.gz | tar -zx && mv heroku-cli* heroku-client")
 ENV["PATH"] = "/app/heroku-client/bin:#{ENV["PATH"]}"
 
