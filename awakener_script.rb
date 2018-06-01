@@ -22,6 +22,6 @@ review_apps = heroku_withAPIkey.app.list.select{ |app| app["name"].include?("sir
 puts "#{review_apps.count} review apps detected"
 
 review_apps.each { |app_name| puts "#{app_name} has to be restored" }
-# review_apps.each { |app_name| restore_db(app_name) }
+review_apps.each { |app_name| restore_db(app_name) }
 
 puts "the end"
