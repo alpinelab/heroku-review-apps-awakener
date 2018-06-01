@@ -1,4 +1,5 @@
-require "platform-api"
+require 'rubygems'
+require 'bundler/setup'
 
 system("curl -s https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli-linux-x64.tar.gz | tar -zx && mv heroku-cli* heroku-client")
 ENV["PATH"] = "/app/heroku-client/bin:#{ENV["PATH"]}"
@@ -20,6 +21,6 @@ review_apps = heroku_withAPIkey.app.list.select{ |app| app["name"].include?("sir
 puts "#{review_apps.count} review apps detected"
 
 review_apps.each { |app_name| puts "#{app_name} has to be restored" }
-review_apps.each { |app_name| restore_db(app_name) }
+# review_apps.each { |app_name| restore_db(app_name) }
 
 puts "the end"
