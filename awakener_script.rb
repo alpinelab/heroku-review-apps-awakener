@@ -15,12 +15,11 @@ def restore_db(heroku_app_name)
   puts "maintenance OFF"
 end
 
-# WARNING : ENV['HEROKU_API_KEY'] is certainly not reachable from outside of Sirac Repository
 heroku_withAPIkey = PlatformAPI.connect(ENV['HEROKU_API_KEY'])
 review_apps = heroku_withAPIkey.app.list.select{ |app| app["name"].include?("sirac-staging-pr-") }.map{ |app| app["name"] }
 puts "#{review_apps.count} review apps detected"
 
 review_apps.each { |app_name| puts "#{app_name} has to be restored" }
-# review_apps.each { |app_name| restore_db(app_name) }
+review_apps.each { |app_name| restore_db(app_name) }
 
 puts "the end"
