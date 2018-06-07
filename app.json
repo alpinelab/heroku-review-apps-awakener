@@ -1,0 +1,27 @@
+{
+  "name": "Heroku review apps AWAKENER",
+  "description": "Don't let your Heroku review apps go read-only 📢 😴",
+  "repository": "https://github.com/alpinelab/heroku-review-apps-awakener",
+  "keywords": ["heroku", "review-apps"],
+  "env": {
+    "HEROKU_API_KEY": {
+      "description": "Your Heroku API key",
+      "required": true
+    },
+    "PARENT_APPS": {
+      "description": "Space-separated list of parents apps that you want review apps to be awaken",
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-cli"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "addons": [
+    "scheduler:standard"
+  ]
+}

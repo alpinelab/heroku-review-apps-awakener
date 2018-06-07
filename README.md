@@ -4,29 +4,13 @@ This script keeps Heroku review apps database read-write for configured parent a
 
 ## Setup
 
-1. Deploy this code to a Heroku app
-2. Add the Heroku CLI buildpack and configure it:
+1. Deploy this code to a Heroku app:
 
-    ```shell
-    heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-cli
-    heroku config:set HEROKU_API_KEY=$(heroku auth:token)
-    ```
+    [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-3. Add the Heroku scheduler:
+2. Configure the [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler) to start `ruby heroku_review_apps_awakener.rb` whenever you like (we do it everyday at 5am and 9pm UTC)
 
-    ```shell
-    heroku addons:create scheduler:standard
-    ```
-
-4. Configure it to start `ruby heroku_review_apps_awakener.rb` whenever you like (we do it everyday at 5am and 9pm UTC)
-
-5. Configure the parent apps you want review apps to me awaken:
-
-    ```shell
-    heroku config:set PARENT_APPS="my-awesome-app another-awesome-app"
-    ```
-
-6. Enjoy always-read-write database for your review apps :tada:
+3. Enjoy always-read-write database for your review apps :tada:
 
 ## Why?
 
