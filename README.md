@@ -18,7 +18,7 @@ This script keeps Heroku review apps database read-write for configured parent a
     heroku addons:create scheduler:standard
     ```
 
-4. Configure it to start `ruby heroku_review_apps_awakener.rb` whenever you like (we do it everyday at 5am and 21am UTC)
+4. Configure it to start `ruby heroku_review_apps_awakener.rb` whenever you like (we do it everyday at 5am and 9pm UTC)
 
 5. Configure the parent apps you want review apps to me awaken:
 
@@ -48,4 +48,4 @@ The solution is to force a PG backup restore (`heroku pg:backups restore`) to re
 
 This project is developed by [Alpine Lab](https://www.alpine-lab.com) and released under the terms of the [MIT license](LICENSE.md).
 
-![Alpine Lab logo](alpinelab-logo.png)
+[![Alpine Lab](alpinelab-logo.png)](https://www.alpine-lab.com)
