@@ -48,4 +48,4 @@ The solution is to force a PG backup restore (`heroku pg:backups restore`) to re
 
 This project is developed by [Alpine Lab](https://www.alpine-lab.com) and released under the terms of the [MIT license](LICENSE.md).
 
-[![Alpine Lab](alpinelab-logo.png)](https://www.alpine-lab.com)
+<a href="https://www.alpine-lab.com"><img src="alpinelab-logo.png" width="40%" /></a>
