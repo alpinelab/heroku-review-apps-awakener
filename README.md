@@ -19,9 +19,14 @@ With [Heroku Pipeline](https://devcenter.heroku.com/articles/pipelines), every G
 A common trick is to attach the parent app database as `PARENT_DATABASE` then to copy its content on each provisioned review app database by adding the following in `app.json`:
 
 ```json
+{
   "scripts": {
     "postdeploy": "pg_dump ${PARENT_DATABASE_URL} | psql ${DATABASE_URL}"
   },
+  "env": {
+    "PARENT_DATABASE_URL": { "required": true }
+  }
+}
 ```
 
 The problem is that review apps can only use Heroku Postgres free plan, which has maximum allowed capacity of 10,000 lines. If you exceed it (which can happen very quickly when copying the full database content of the parent app), Heroku disrupts it after 24 hours by setting it read-only :scream:
