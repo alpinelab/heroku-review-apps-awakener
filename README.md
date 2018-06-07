@@ -1,4 +1,4 @@
-# Heroku review apps ⏰ AWAKENER ⏰
+# Heroku review apps AWAKENER 📢 😴
 
 This script keeps Heroku review apps database read-write for configured parent apps, even if they exceed 10k lines.
 
