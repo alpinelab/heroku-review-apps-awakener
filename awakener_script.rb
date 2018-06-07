@@ -2,26 +2,29 @@ require 'rubygems'
 require 'bundler/setup'
 require 'platform-api'
 
-system("curl -s https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli-linux-x64.tar.gz | tar -zx && mv heroku-cli* heroku-client")
-ENV["PATH"] = "/app/heroku-client/bin:#{ENV["PATH"]}"
-
-def restore_db(heroku_app_name)
-  puts "rescue #{heroku_app_name}"
-  system "heroku maintenance:on -a #{heroku_app_name}"
-  puts "maintenance ON"
-  system "heroku pg:backups:capture -a #{heroku_app_name}"
-  puts "backups:capture ok"
-  system "heroku pg:backups:restore -a #{heroku_app_name} --confirm #{heroku_app_name}"
-  puts "backups:restore ok"
-  system "heroku maintenance:off -a #{heroku_app_name}"
-  puts "maintenance OFF"
+def review_apps_to_wake_up
+  PlatformAPI.connect(ENV['HEROKU_API_KEY']).app.list.map do |app|
+    app["name"] if app["name"].include?("sirac-staging-pr-")
+  end.compact
 end
 
-heroku_withAPIkey = PlatformAPI.connect(ENV['HEROKU_API_KEY'])
-review_apps = heroku_withAPIkey.app.list.select{ |app| app["name"].include?("sirac-staging-pr-") }.map{ |app| app["name"] }
-puts "#{review_apps.count} review apps detected"
+def with_maintenance_mode(app)
+  system "heroku maintenance:on --app #{app}"
+  yield
+  system "heroku maintenance:off --app #{app}"
+end
 
-review_apps.each { |app_name| puts "#{app_name} has to be restored" }
-review_apps.each { |app_name| restore_db(app_name) }
+def capture_database(app)
+  system "heroku pg:backups:capture --app #{app}"
+end
 
-puts "the end"
+def restore_database(app)
+  system "heroku pg:backups:restore --app {app} --confirm #{app}"
+end
+
+review_apps_to_wake_up.each do |app|
+  with_maintenance_mode(app) do
+    capture_database(app)
+    restore_database(app)
+  end
+end
