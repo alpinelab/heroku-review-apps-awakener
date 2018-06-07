@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'bundler/setup'
-require 'platform-api'
+require "platform-api"
 
 class ReviewApp
   REVIEWAPP_REGEX = /-pr-\d+\z/
@@ -57,11 +55,4 @@ private
   def restore_database
     system "heroku pg:backups:restore --app #{name} --confirm #{name}"
   end
-end
-
-if ENV["PARENT_APPS"]
-  ReviewApp.for(*ENV["PARENT_APPS"].split).map(&:wake_up)
-else
-  puts "Error: PARENT_APPS must be set"
-  exit 78 # EX_CONFIG
 end
