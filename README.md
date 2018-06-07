@@ -47,3 +47,5 @@ The solution is to force a PG backup restore (`heroku pg:backups restore`) to re
 ## License
 
 This project is developed by [Alpine Lab](https://www.alpine-lab.com) and released under the terms of the [MIT license](LICENSE.md).
+
+![Alpine Lab logo](alpinelab-logo.png)
