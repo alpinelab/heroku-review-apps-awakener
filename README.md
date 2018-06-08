@@ -44,6 +44,12 @@ The problem is that review apps can [only use Heroku Postgres free plan](https:/
 
 The solution is to force a PG backup restore (`heroku pg:backups restore`) to reset the 24 hours read-write grace period.
 
+## Message to _herokai_
+
+Please let us define larger plans for review apps.
+
+![Shut up and take my money](https://media.giphy.com/media/3oKIPa2TdahY8LAAxy/giphy.gif)
+
 ## License
 
 This project is developed by [Alpine Lab](https://www.alpine-lab.com) and released under the terms of the [MIT license](LICENSE.md).
