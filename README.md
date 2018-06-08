@@ -40,7 +40,7 @@ A common trick is to:
     }
     ```
 
-The problem is that review apps can only use Heroku Postgres free plan, which has a maximum allowed capacity of 10,000 lines. If you exceed it, Heroku disrupts it after 24 hours by setting it read-only :sob:
+The problem is that review apps can [only use Heroku Postgres free plan](https://devcenter.heroku.com/changelog-items/1113), which has a maximum allowed capacity of 10,000 lines. If you exceed it, Heroku disrupts it after 24 hours by setting it read-only :sob:
 
 The solution is to force a PG backup restore (`heroku pg:backups restore`) to reset the 24 hours read-write grace period.
 
