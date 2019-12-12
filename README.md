@@ -6,7 +6,7 @@ This script keeps Heroku review apps database read-write for configured parent a
 
 1. Deploy this code to a Heroku app:
 
-    [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/alpinelab/heroku-review-apps-awakener)
+    [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 2. Configure the [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler) to start `ruby heroku_review_apps_awakener.rb` whenever you like (we do it everyday at 5am and 9pm UTC)
 
