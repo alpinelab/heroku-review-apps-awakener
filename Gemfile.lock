@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     erubis (2.7.0)
-    excon (0.62.0)
+    excon (0.71.1)
     heroics (0.0.24)
       erubis (~> 2.0)
       excon
