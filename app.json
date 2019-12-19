@@ -13,6 +13,9 @@
       "required": true
     }
   },
+  "scripts": {
+    "configure": "cat scripts/parent_apps_indexer.rb | heroku run console"
+  },
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-cli"
